@@ -12,17 +12,30 @@ import CoffeeList from "../CoffeeList";
 import CoffeeCart from "../CoffeeCart";
 import CoffeeDetail from "../CoffeeDetail";
 import Login from "../Login";
-
+import { action } from "mobx";
+import { getCoffeeShops } from "../../store/actions/coffeeActions";
+import { connect } from "react-redux";
 class HomePage extends Component {
+  componentDidMount() {
+    this.props.getCoffeeShops();
+  }
+
   render() {
     return (
       <Container style={styles.transparent}>
         <View style={styles.overlay} />
         <Header style={styles.transparent} />
-        <CoffeeCart />
+        <CoffeeList />
       </Container>
     );
   }
 }
 
-export default HomePage;
+const mapDispatchToProps = dispatch => ({
+  getCoffeeShops: () => dispatch(getCoffeeShops())
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(HomePage);

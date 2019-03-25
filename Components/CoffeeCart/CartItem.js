@@ -26,5 +26,10 @@ class CartItem extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    coffeeshops: state.coffeeshops.coffeeshops
+  };
+};
 
 export default CartItem;
